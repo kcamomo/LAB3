@@ -19,7 +19,7 @@ public class TestHands {
 		h.AddCardToHand(new Card(eRank.FOUR,eSuit.CLUBS));
 		h.AddCardToHand(new Card(eRank.FOUR,eSuit.DIAMONDS));
 		h.AddCardToHand(new Card(eRank.FOUR,eSuit.SPADES));		
-		h.EvaluateHand();
+		//h.EvaluateHand();
 		
 		//	Hand better be a full house
 		assertEquals(eHandStrength.FullHouse.getHandStrength(),

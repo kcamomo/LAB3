@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow.ArrayLinkedList;
+
 import PkgException.HandException;
 import pkgPokerEnum.eCardNo;
 import pkgPokerEnum.eHandStrength;
@@ -34,10 +36,85 @@ public class Hand {
 	public HandScore getHandScore() {
 		return HS;
 	}
+	
+	private ArrayList<Hand> replaceJoker(Hand h, int location)
+	{
+		ArrayList<Hand> replacmentHands=new ArrayList<Hand>();
+		
+		for (eRank Rank : eRank.values()) {
+			
+			for(eSuit Suit: eSuit.values())
+			{
+				Hand tempHand=new Hand();
+				tempHand.AddCardToHand(new Card(Rank,Suit));
+				tempHand.getCardsInHand().remove(location);
+				replacmentHands.add(tempHand);
+			}
+			
+		}
+		
+		return replacmentHands;
+		
+	}
 
 	public Hand EvaluateHand() throws HandException {
-		Hand h = Hand.EvaluateHand(this);
-		return h;
+//		
+		ArrayList<Hand> uncheckedHands=new ArrayList<Hand>();
+		ArrayList<Hand> checkedHands=new ArrayList<Hand>();
+		
+		uncheckedHands.add(this);
+		
+		
+		
+		while(uncheckedHands.size()!=0)
+		{
+			
+			Hand tempHand=uncheckedHands.get(0);
+			boolean hasJoker=false;
+			int jokerLocation=-1;
+			
+			
+			//check every crd in the hand to see if its a joker
+			for(int i=0; i<tempHand.getCardsInHand().size();i++)
+			{				
+				Card c=tempHand.getCardsInHand().get(i);
+				if(c.geteRank()==eRank.JOKER)
+				{
+					hasJoker=true;
+					jokerLocation=i;
+					break;
+				}
+			}
+			
+			//if there is a joker fill in all the possible hands that could come from it
+			if(hasJoker)
+			{
+				uncheckedHands.addAll(replaceJoker(tempHand, jokerLocation));
+			}
+			else
+			{
+				checkedHands.add(tempHand);
+			}
+			
+			//no matter what remove the current hand since if it is not a joker it is moved to the other list 
+			// and dosent need to be checked. if it did have a joker al the possiblities have been filled in
+			uncheckedHands.remove(0);
+			
+		}
+		
+		Hand highestHand=checkedHands.get(0);
+		
+		for(Hand h: checkedHands)
+		{
+			if(h.HS.getHandStrength().compareTo(highestHand.HS.getHandStrength())>0)
+			{
+				highestHand=h;
+			}
+		}
+		
+		
+		return highestHand;
+		
 	}
 
 	private static Hand EvaluateHand(Hand h) throws HandException {
