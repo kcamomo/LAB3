@@ -45,7 +45,7 @@ public class Hand {
 			
 			for(eSuit Suit: eSuit.values())
 			{
-				Hand tempHand=new Hand();
+				Hand tempHand=h;
 				tempHand.AddCardToHand(new Card(Rank,Suit));
 				tempHand.getCardsInHand().remove(location);
 				replacmentHands.add(tempHand);
@@ -78,7 +78,7 @@ public class Hand {
 			for(int i=0; i<tempHand.getCardsInHand().size();i++)
 			{				
 				Card c=tempHand.getCardsInHand().get(i);
-				if(c.geteRank()==eRank.JOKER)
+				if(c.geteRank()==eRank.JOKER||c.isWild())
 				{
 					hasJoker=true;
 					jokerLocation=i;
@@ -106,7 +106,11 @@ public class Hand {
 		
 		for(Hand h: checkedHands)
 		{
-			if(h.HS.getHandStrength().compareTo(highestHand.HS.getHandStrength())>0)
+			EvaluateHand(h);
+			EvaluateHand(highestHand);
+			
+			
+			if(h.HS.getHandStrength().ordinal()<=highestHand.HS.getHandStrength().ordinal())
 			{
 				highestHand=h;
 			}
