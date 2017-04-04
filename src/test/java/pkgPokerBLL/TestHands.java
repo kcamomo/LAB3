@@ -1,7 +1,7 @@
 package pkgPokerBLL;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -60,6 +60,8 @@ public class TestHands {
 			e.printStackTrace();
 		}
 		
+		 
+		
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.RoyalFlush);
 		assertTrue(h.getHandScore().getHiHand() == eRank.ACE);
 		
@@ -98,7 +100,7 @@ public class TestHands {
 		}
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.FourOfAKind);
-		assertTrue(h.getHandScore().getHiHand() == eRank.TEN);
+		assertTrue(h.getHandScore().getHiHand() == eRank.ACE);
 	}
 	
 	@Test
@@ -196,7 +198,7 @@ public class TestHands {
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.Straight);
 		assertTrue(h.getHandScore().getHiHand() == eRank.SIX);
-		assertTrue(h.getHandScore().getLoHand() == null);
+		assertTrue(h.getHandScore().getLoHand() == eRank.TWO);
 	}
 	
 	@Test
@@ -215,8 +217,8 @@ public class TestHands {
 		}
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.Straight);
-		assertTrue(h.getHandScore().getHiHand() == eRank.FIVE);
-		assertTrue(h.getHandScore().getLoHand() == null);
+		assertTrue(h.getHandScore().getHiHand() == eRank.ACE);
+		assertTrue(h.getHandScore().getLoHand() == eRank.TWO);
 	}
 	
 	@Test
@@ -237,7 +239,7 @@ public class TestHands {
 		assertFalse(h.getHandScore().getHandStrength() == eHandStrength.Straight);
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.HighCard);
 		assertTrue(h.getHandScore().getHiHand() == eRank.ACE);
-		assertTrue(h.getHandScore().getLoHand() == null);
+		assertTrue(h.getHandScore().getLoHand() == eRank.THREE);
 	}
 	
 	@Test
@@ -256,7 +258,7 @@ public class TestHands {
 		}
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.ThreeOfAKind);
-		assertTrue(h.getHandScore().getHiHand() == eRank.TWO);
+		assertTrue(h.getHandScore().getHiHand() == eRank.KING);
 	}
 
 	@Test
@@ -275,7 +277,7 @@ public class TestHands {
 		}
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.ThreeOfAKind);
-		assertTrue(h.getHandScore().getHiHand() == eRank.THREE);
+		assertTrue(h.getHandScore().getHiHand() == eRank.KING);
 	}	
 	
 	@Test
@@ -374,7 +376,7 @@ public class TestHands {
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.Pair);
 		assertTrue(h.getHandScore().getHiHand() == eRank.KING);
-		assertTrue(h.getHandScore().getLoHand() == null);
+		assertTrue(h.getHandScore().getLoHand() == eRank.TWO);
 	}
 		
 	@Test
@@ -393,8 +395,9 @@ public class TestHands {
 		}
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.Pair);
-		assertTrue(h.getHandScore().getHiHand() == eRank.KING);
-		assertTrue(h.getHandScore().getLoHand() == null);
+		assertTrue(h.getHandScore().getHiHand() == eRank.ACE);
+		assertTrue(h.getHandScore().getLoHand() == eRank.THREE);
+
 	}
 	
 	@Test
@@ -413,8 +416,8 @@ public class TestHands {
 		}
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.Pair);
-		assertTrue(h.getHandScore().getHiHand() == eRank.JACK);
-		assertTrue(h.getHandScore().getLoHand() == null);
+		assertTrue(h.getHandScore().getHiHand() == eRank.ACE);
+		assertTrue(h.getHandScore().getLoHand() == eRank.THREE);
 	}
 	
 	@Test
@@ -433,8 +436,8 @@ public class TestHands {
 		}
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.Pair);
-		assertTrue(h.getHandScore().getHiHand() == eRank.TWO);
-		assertTrue(h.getHandScore().getLoHand() == null);
+		assertTrue(h.getHandScore().getHiHand() == eRank.KING);
+		assertTrue(h.getHandScore().getLoHand() == eRank.TWO);
 	}
 	
 	@Test
