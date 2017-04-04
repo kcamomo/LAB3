@@ -315,7 +315,7 @@ public class TestHands {
 		}
 	
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.TwoPair);
-		assertTrue(h.getHandScore().getHiHand() == eRank.TEN);
+		assertTrue(h.getHandScore().getHiHand() == eRank.KING);
 		assertTrue(h.getHandScore().getLoHand() == eRank.THREE);
 	}
 	
@@ -334,6 +334,13 @@ public class TestHands {
 			e.printStackTrace();
 		}
 	
+		
+							System.out.println("twoPair2");
+							System.out.println(h.getHandScore().getHiHand());
+							System.out.println(h.getHandScore().getLoHand());
+							System.out.println(h.getHandScore().getHandStrength()==eHandStrength.TwoPair);
+
+		
 		assertTrue(h.getHandScore().getHandStrength() == eHandStrength.TwoPair);
 		assertTrue(h.getHandScore().getHiHand() == eRank.TEN);
 		assertTrue(h.getHandScore().getLoHand() == eRank.THREE);

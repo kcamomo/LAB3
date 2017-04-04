@@ -174,7 +174,22 @@ public class Hand {
 
 	// TODO: Implement This Method
 	public static boolean isHandRoyalFlush(Hand h, HandScore hs) {
-		return false;
+		boolean isRoyalFlush=false;
+		
+		if( h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() == eRank.ACE
+			&& h.getCardsInHand().get(eCardNo.SecondCard.getCardNo()).geteRank() == eRank.KING
+			&& h.getCardsInHand().get(eCardNo.ThirdCard.getCardNo()).geteRank() == eRank.QUEEN
+			&& h.getCardsInHand().get(eCardNo.FourthCard.getCardNo()).geteRank() == eRank.JACK
+			&& h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank() == eRank.TEN
+				)		{
+			isRoyalFlush=true;
+			hs.setHandStrength(eHandStrength.RoyalFlush);
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank());
+			hs.setLoHand(h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank());
+			
+		}
+		
+		return isRoyalFlush;
 	}
 
 	// TODO: Implement This Method
@@ -363,7 +378,25 @@ public class Hand {
 
 	// TODO: Implement This Method
 	public static boolean isHandHighCard(Hand h, HandScore hs) {
-		return false;
+		
+		boolean isHighCard=false;
+		
+		if((h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank()) != h.getCardsInHand()
+				.get(eCardNo.SecondCard.getCardNo()).geteRank()
+				&& h.getCardsInHand().get(eCardNo.SecondCard.getCardNo()).geteRank() != h.getCardsInHand()
+						.get(eCardNo.ThirdCard.getCardNo()).geteRank()
+				&& h.getCardsInHand().get(eCardNo.ThirdCard.getCardNo()).geteRank() != h.getCardsInHand()
+						.get(eCardNo.FourthCard.getCardNo()).geteRank()
+				&& h.getCardsInHand().get(eCardNo.FourthCard.getCardNo()).geteRank() != h.getCardsInHand()
+						.get(eCardNo.FifthCard.getCardNo()).geteRank()) {
+			isHighCard=true;
+			
+			hs.setHandStrength(eHandStrength.HighCard);
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank());
+			hs.setLoHand(h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank());
+		}
+		
+		return isHighCard;
 	}
 
 	public static boolean isHandAcesAndEights(Hand h, HandScore hs) {
